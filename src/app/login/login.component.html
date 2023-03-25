@@ -1,0 +1,37 @@
+<div class="container">
+    <form [formGroup]="loginForms" autocomplete="off">
+        <h6>Login</h6>
+        <div class="form-group">
+            <label for="username">UserName:</label>
+            <div class="input">
+                <i class="fa fa-user mr-3"></i>
+                <input formControlName="userName" type="text" class="form-control"
+                 [ngClass]="{'is-invalid': (isSubmit  || f['userName'].touched) && f['userName'].errors}">            </div>
+            <p *ngIf="(isSubmit || f['userName'].touched) && f['userName'].errors" class="ml-2 text-danger">Required</p>
+            <!-- <p *ngIf="isSubmit && f['userName'].errors">Required</p> -->
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <div class="input">
+                <i class="fa fa-unlock-alt px-3 "></i>
+                <input class="form-control" type="password" formControlName="password" 
+                 [ngClass]="{'is-invalid': (isSubmit  || f['password'].touched) && f['password'].errors}"></div>
+                <p *ngIf="(isSubmit || f['password'].touched) && f['password'].errors" class="ml-2 text-danger">Required</p>
+            </div>
+            <!--  -->
+<!--  -->
+            <div class="text-center my-3" *ngIf="this.wronguser">  
+                <span class="text-danger">wrong userdetails
+                </span></div>
+            <div class="text-center" *ngIf="this.loading">  
+            <span class="spinner-border text-primary " role="status">
+            </span></div>
+           
+            <div class="text-center">
+                <button type="submit" class="btn btn-outline-primary px-4 ml-3" (click)="loginCheck()"
+                  [disabled]="this.loading">Login</button>
+            </div>
+            <p class="text-center my-3">Create a new account? <a routerLink="/login"> Register</a></p>
+    </form>
+</div>

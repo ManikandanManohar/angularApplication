@@ -1,0 +1,8 @@
+<div class="container">
+<div class="dv">
+    <img [src]="url" alt="">
+</div> 
+<button type="button" class="btn  btn-primary my-3 text-white"  (click)="fileInput.click()">Change Profile</button>
+<input hidden (change)="onFileSelected($event)" #fileInput type="file">
+</div>
+

@@ -1,0 +1,59 @@
+<div *ngIf="jobsArr.length==0 then content; else nocontent "></div>
+<ng-template #content> 
+  <div class="container"> 
+    <div class="text-start">
+  <button type="button" class="btn  btn-primary px-4 py-2"  routerLink='/home/userdetails'>
+    Add User 
+  </button> </div>
+  <p class="nodata">No records found.</p>
+</div>
+</ng-template>
+<ng-template #nocontent> 
+<div class="">
+  <div class="add">
+    <h2 class="head text-center py-4">Job Listing</h2>
+  </div>
+  <div class="container-fluid">
+    <button type="button" class="btn btn-sm btn-primary my-1" routerLink='/home/userdetails'>
+      Add User : <b class="text-white">{{jobsArr.length}}</b>
+    </button>
+    <div class="table-responsive">
+      <table class="table table-bordered  table-hover text-center">
+        <thead class="thead-dark">
+          <tr>
+            <th>User</th>
+            <th>FatherName</th>
+            <th>Email</th>
+            <th>Adddres1</th>
+            <th>Addres2</th>
+            <th>city</th>
+            <th>Employ Id</th>
+            <th>Action</th>
+          </tr>   
+        </thead>
+        <tbody class="body">
+          <tr *ngFor="let Arr of jobsArr">
+            <td>{{Arr.user}}</td>
+            <td>{{Arr.fathername}}</td>
+            <td>{{Arr.email}}</td>
+            <td>{{Arr.gender}}</td>
+            <td>{{Arr.addres2}}</td>
+            <td>{{Arr.city}}</td>
+            <td>
+              <ul>
+                <li *ngFor="let employ of Arr.employees">                 
+              <p>Name:{{employ.empName}} </p>   
+              <p>Age:{{employ.age}} </p>   
+                   </li>
+              </ul>
+            </td>
+            <div class="d-flex"></div>
+            <i class="fa fa-edit text-success p-2" (click)="onedit(Arr.id)"></i>
+            <i class="fa fa-close text-danger p-2" (click)="ondelete(Arr.id)"></i>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+  </ng-template>

@@ -1,0 +1,125 @@
+<div class="container-fluid">
+  <div class="container">
+    <h3 class="text-center user">Employ Form</h3>
+    <form [formGroup]="listForm" autocomplete="off">
+      <div class="form-row">
+        <div class="form-group col-sm-6">
+          <label for="inputEmail4">Name:</label>
+          <input type="text" class="form-control" id="inputEmail4" formControlName="user" placeholder="user">
+          <p *ngIf="(isSubmit || f['user'].touched) && f['user'].errors" class="ml-2 text-danger">Required</p>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="inputPassword4">FatherName:</label>
+          <input type="text" class="form-control" id="fatheruser" placeholder="fathername" formControlName="fathername">
+          <p *ngIf="(isSubmit || f['fathername'].touched) && f['fathername'].errors" class="ml-2 text-danger">Required
+          </p>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-sm-6">
+          <label for="inputEmail4">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email">
+          <div *ngIf="(isSubmit  || f['email'].touched) && f['email'].errors
+          " class="text-danger">
+            <p *ngIf="f['email'].errors['required']">Required</p>
+            <p *ngIf="f['email'].errors['pattern']"> valid email pattern</p>
+          </div>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="inputPassword4">Password</label>
+          <input type="Password" class="form-control" id="Password" placeholder="Password" formControlName="password">
+          <p *ngIf="(isSubmit || f['password'].touched) && f['password'].errors" class="ml-2 text-danger">Required</p>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-sm-6">
+          <label for="inputAddress">Gender:</label>
+          <div class="gender">
+              <label for="" class="checkbox"> Male</label>
+            <input type="radio" value="male" class="checkbox ml-1 mr-2 " formControlName="gender">
+              <label for="" class="checkbox ml-2"> Female</label>
+              <input type="radio" value="female" class="checkbox m-1" formControlName="gender">     
+          </div>
+          <p *ngIf="(isSubmit || f['gender'].touched) && f['gender'].errors" class="ml-2 text-danger">Required</p>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="inputAddress2">Address :</label>
+          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"
+            formControlName="addres2">
+          <p *ngIf="(isSubmit || f['addres2'].touched) && f['addres2'].errors" class="ml-2 text-danger">Required</p>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">City</label>
+          <input type="text" class="form-control" id="inputCity" formControlName="city">
+          <p *ngIf="(isSubmit || f['city'].touched) && f['city'].errors" class="ml-2 text-danger">Required</p>
+        </div>
+        <!------------------------- change check box -------------->
+        <div class="form-group col-md-6">
+          <label for="inputCity">PhoneNumber</label>
+          <input type="number" class="form-control" id="phonenumber" formControlName="phonenumber" maxlength="20">
+          <div *ngIf="(isSubmit  || f['phonenumber'].touched) && f['phonenumber'].errors
+          " class="text-danger">
+            <p *ngIf="f['phonenumber'].errors['required']">Required</p>
+            <p *ngIf="f['phonenumber'].errors['pattern']">valid phone numbers</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="checkbox m-1" for="gridCheck"> Are you Marrid Click the Box:</label>
+        <input (change)="addControl()" class="checkbox m-1" type="checkbox" formControlName="checkbox">
+        <div *ngIf="listForm.value.checkbox">
+          <div class="row">
+            <div class="col-sm-6">
+              <label for="form-control">Wife Name:</label>
+              <input type="text" class="form-control" formControlName="checkarrayone">
+              <p *ngIf="(isSubmit || f['checkarrayone'].touched) && f['checkarrayone'].errors" class="ml-2 text-danger">
+                Required</p>
+            </div>
+            <div class="col-sm-6">
+              <!-- <label for="form-control">Wife :</label>
+              <input type="text" class="form-control" formControlName="checkarraytwo">
+              <p *ngIf="(isSubmit) && f['checkarraytwo'].errors" class="ml-2 text-danger">
+                Required</p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!------------------------- change check box completed -------------->
+      <!---------------------------  Form Array  --------------------------- -->
+      <div formArrayName="employees">
+        <div *ngFor="let emp of employees.controls; let i = index" [formGroupName]="i" class="employee">
+          <p> <b>Employee : {{i + 1}}</b></p>
+          <div class="row">
+            <div class="form-group col-sm-5">
+              <label for="text">Name:</label>
+              <input formControlName="empName" class="form-control">
+              <p *ngIf="isSubmit && employees.controls[i].get('empName')?.errors" class="ml-2 text-danger">
+                Required</p>
+            </div>
+            <div class="form-group col-sm-5">
+              <label for="number">Age :</label>
+              <input formControlName="age" class="form-control" type="number">
+              <p *ngIf="isSubmit && employees.controls[i].get('age')?.errors" class="ml-2 text-danger">
+                Required</p>
+            </div>
+            <div class="col-sm-2 my-4">
+              <button type="button" (click)="deleteEmployee(i)" class="btn btn-sm btn-danger py-1 px-3"
+                [disabled]="employees.length!==0">Delete</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <button type="button" (click)="addEmployee()" class="btn btn-success" [disabled]="employees.invalid">Add More
+        Employee</button>
+      <!--------------------------- Form Array  completed --------------------------->
+
+      <div class="text-center">
+        <button type="button" class="btn btn-outline-primary px-4 ml-3" (click)="submit()">Sign in</button>
+      </div>
+
+    </form>
+  </div>
+</div>

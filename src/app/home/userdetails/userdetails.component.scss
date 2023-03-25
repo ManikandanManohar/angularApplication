@@ -1,0 +1,32 @@
+
+.form-control{
+max-width: 90%;
+}
+.user{
+    margin-top: 15px;
+}
+.delete{
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 30px;
+}
+form{
+    padding: 15px;
+    height: auto;
+        }
+.gender{
+    justify-content: space-between;
+}
+@media screen and (min-width: 400px) {
+    form{
+padding: 15px;
+margin-top: 15px;
+    }
+    .form-control{
+        max-width: 95%;
+        }
+        .user{
+            margin-top: 25px;
+        }
+  }

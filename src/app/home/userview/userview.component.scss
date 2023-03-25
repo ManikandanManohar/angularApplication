@@ -1,0 +1,41 @@
+.container-fluid{
+width:auto ;
+}
+table{
+  font-size: 14px;
+}
+.fa{
+    font-size: 19px;
+    margin-top: 10px;
+}
+.body{
+  align-items: center;
+  justify-content: center;
+}
+
+li{
+  list-style: none;
+}
+.container{
+  
+  margin-top: 30px;
+}
+.nodata{
+  display: grid;
+place-items: center;  
+font-size: 30px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+@media screen and (min-width: 400px) {
+    table{
+      font-size: 15px;
+    }
+    .add{
+        margin-top: 18px;
+    }
+    .fa{
+      font-size: 20px;
+      margin-top: 10px;
+  }
+  }

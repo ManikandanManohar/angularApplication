@@ -1,0 +1,56 @@
+.container{
+    margin-top:30px ;
+}
+.textbox-4 {
+    width: 275px;
+    height: 50px;
+    border: 2px solid red;
+    padding: 10px 5px;
+    color: #000;
+    border-radius: 5px;
+    background: #ffffff;
+    outline: none;
+}
+.form-group-4 {
+    position: relative;
+    margin-bottom: 30px;
+}
+.form-label-4 {
+position: absolute;
+top: 50%;
+left: 2rem;
+transform: translateY(-50%);
+font-size: 16px;
+color: #000;
+transition: all 0.25s linear;
+pointer-events: none;
+}
+.textbox-4:focus~.form-label-4
+{
+
+    transform: translateY(50%);
+    top: -80%;
+    left: 1rem;
+    font-size: 17px;
+    padding: 0.3rem;
+    background-color: white;
+    color: #000;
+}
+.textbox-4:not(:focus):valid~.form-label-4 {
+
+    transform: translateY(50%);
+    top: -30%;
+    left: 1rem;
+    font-size: 17px;
+    padding: 0.4rem;
+    background-color: rgb(204, 15, 15);
+    color: #000;
+}
+img{
+height: 150px;
+width: 150px;
+border-radius: 50%;
+object-fit: cover;
+background: #dfdfdf;
+
+}

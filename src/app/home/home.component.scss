@@ -1,0 +1,60 @@
+h1 {
+    text-align: center;
+}
+.card{
+    min-height: 700px;
+    background-color: rgba(134, 122, 238, 0.2);
+    border: none;
+}
+.card-header{
+    border: none;
+}
+.card-body{
+    min-height: 700px;
+    width:auto;
+    background-color: rgba(134, 122, 238, 0.2);
+    border: none;
+}
+a {
+    font-weight: 500;
+    color: #fff;
+}
+.active {
+    font-weight: 700;
+}
+button {
+    color: #fff;
+}
+.home {
+    font-size: 20px;
+    font-weight: 700;
+}
+.user {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin: 5px;
+}
+
+.search{
+min-width: 100px;
+max-width: 200px;
+height: 25px;
+border-style: outset;
+border: 1px solid rgb(245, 238, 238);
+color: #fff;
+
+
+}
+.search::placeholder{
+    color: #fff;
+}
+@media screen and (max-width: 400px) {
+    .user{
+        font-size: 15px;
+        margin: 0px;
+    }
+    .card-body{
+      font-size: 12px;
+    }
+}
