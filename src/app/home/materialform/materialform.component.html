@@ -1,0 +1,18 @@
+<div class="form"> 
+<form class="example-form"  [formGroup]="myForm" (ngSubmit)="submitForm()">
+    <h4 class="head">Material Form </h4>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Favorite food" type="text" formControlName="name">
+      <mat-error *ngIf="errorHandling('name', 'required')" >
+        You must provide a<strong>name</strong>
+     </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Leave a comment" type="password" formControlName="password">
+    </mat-form-field>
+    
+    <div class="button-wrapper">
+        <button mat-flat-button color="primary">Submit</button>
+      </div>
+  </form>
+</div>

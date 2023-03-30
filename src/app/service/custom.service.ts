@@ -8,54 +8,62 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CustomService implements OnInit {
- 
- 
+
+
   getDataById(id: string) {
     throw new Error('Method not implemented.');
   }
-  private  ApiUrl =environment.API_URL;
-  private Mock_API=environment.mock_api;
+  private ApiUrl = environment.API_URL;
+  private Mock_API = environment.mock_api;
 
-  private login_URL = this.ApiUrl+ "auth/new/login"
+  private login_URL = this.ApiUrl + "auth/new/login"
   private user_Details = this.ApiUrl + 'auth/new/user-details';
-  private mock_api=this.Mock_API + 'mockapi';
-
+  private mock_api = this.Mock_API + 'mockapi';
+  private invoice_Api = this.ApiUrl + '/api/accouting/soc/invoice/print/b0aad1ee-19a1-46b2-9d74-26bfef28eb86';
   constructor(
-    
+
     private http: HttpClient,
-    public router :Router,
-    ) { }
+    public router: Router,
+  ) { }
   ngOnInit(): void {
   }
 
-    Login(data : any){
-      return this.http.post<any>(this.login_URL,data);
-    }
-    UserDetail(){
-      return this.http.get<any>(this.user_Details);
-    };
-    Gettoken( ){
-      return (localStorage.getItem('token') );
-   };
-   Logout(){
+  invoiceGet() {
+    return this.http.get<any>(this.invoice_Api);
+  }
+  Login(data: any) {
+    return this.http.post<any>(this.login_URL, data);
+  }
+  UserDetail() {
+    return this.http.get<any>(this.user_Details);
+  };
+  Gettoken() {
+    return (localStorage.getItem('token'));
+  };
+  Logout() {
     localStorage.clear();
     this.router.navigate(['login'])
-   };
-   Getcareers() {
+  };
+  Getcareers() {
     return this.http.get<any>(this.mock_api);
   };
-  createCarrers( data:any) {
+  createCarrers(data: any) {
     return this.http.post<any>(this.mock_api, data);
   };
   deletejob(id: any) {
     return this.http.delete<any>(this.mock_api + '/' + id);
   };
-Edit(id:any){
-  return this.http.get<any>(this.mock_api + '/' + id);
-};
-Update(data:any,id:any){
-  return this.http.put<any>(this.mock_api + '/' + id, data);
-};
-get_file(): Observable<any>{
-  return this.http.get( this.mock_api+ '/get_image'  )}
+  Edit(id: any) {
+    return this.http.get<any>(this.mock_api + '/' + id);
+  };
+  Update(data: any, id: any) {
+    return this.http.put<any>(this.mock_api + '/' + id, data);
+  };
+  get_file(): Observable<any> {
+    return this.http.get(this.mock_api + '/get_image')
+  };
+
+  open() {
+
+  }
 }

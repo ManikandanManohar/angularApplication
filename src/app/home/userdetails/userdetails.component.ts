@@ -10,6 +10,7 @@ import { TrosterService } from 'src/app/service/troster.service';
   styleUrls: ['./userdetails.component.scss']
 })
 export class UserdetailsComponent implements OnInit {
+  @Input() fetchData:any;
   listForm!: FormGroup;
   isSubmit = false;
   user: any;
@@ -47,12 +48,30 @@ export class UserdetailsComponent implements OnInit {
           phonenumber: res.phonenumber,
           password: res.password,
           email: res.email,
-          gender: res.addres1,
+          gender:res.gender,
+          addres1: res.addres1,
           addres2: res.addres2,
           city: res.city,
           checkbox: res.checkbox,
           fathername: res.fathername,
+          employees:res.employees
         })
+      })
+    }
+    if(this.fetchData){
+      console.log(this.fetchData);
+      this.listForm.patchValue({
+        user: this.fetchData.user,
+        phonenumber: this.fetchData.phonenumber,
+        password: this.fetchData.password,
+        email: this.fetchData.email,
+        addres1: this.fetchData.addres1,
+        addres2: this.fetchData.addres2,
+        gender:this.fetchData.gender,
+        city: this.fetchData.city,
+        checkbox: this.fetchData.checkbox,
+        fathername: this.fetchData.fathername,
+        employees:this.fetchData.employees
       })
     }
     this.service.UserDetail().subscribe(res => {

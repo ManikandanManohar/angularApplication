@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -17,6 +17,15 @@ import { ToastrModule  } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TestingComponent } from './home/testing/testing.component';
 import { MainComponent } from './home/main/main.component';
+import { MaterialformComponent } from './home/materialform/materialform.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { NgxPrintModule } from 'ngx-print';
+import { ViewComponent } from './home/view/view.component';
+import { NgbModalModule, NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { InvoiceComponent } from './home/invoice/invoice.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +35,9 @@ import { MainComponent } from './home/main/main.component';
     UserviewComponent,
     TestingComponent,
     MainComponent,
+    MaterialformComponent,
+    ViewComponent,
+    InvoiceComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +46,12 @@ import { MainComponent } from './home/main/main.component';
     ReactiveFormsModule,
     HttpClientModule,  
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    NgxPrintModule,
+    NgbModalModule  ,NgbModule ,NgbPaginationModule
   ],
   providers: [ CanactivateGuard,CustomService,
     {
@@ -44,6 +61,7 @@ import { MainComponent } from './home/main/main.component';
        provide: HTTP_INTERCEPTORS, useClass: ErrInterceptor, multi: true 
       },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

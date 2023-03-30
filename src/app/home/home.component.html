@@ -1,11 +1,7 @@
 <div class="card">
   <div class="card-header">
     <nav class="navbar navbar-expand-lg bg-primary fixed-top">
-      <p class="user">{{user}} </p>
-    
-        <input class="form-control search  bg-primary " type="text" placeholder="Search" aria-label="Search"/>
-          
-     
+      <p class="user">{{user}} </p>       
       <button (click)="toggle()" *ngIf="!menu" class="navbar-toggler fa fa-bars" type="button" data-toggle="collapse"
         data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       </button>
@@ -23,7 +19,13 @@
             <a class="nav-link" routerLink="./userdetails" routerLinkActive="active" skipLocationChange="true">Create Details</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="./testing" routerLinkActive="active" skipLocationChange="true">Practice C </a>
+            <a class="nav-link" routerLink="./testing" routerLinkActive="active" skipLocationChange="true">Practice</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" routerLink="./materialform" routerLinkActive="active" skipLocationChange="true">Materialform</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" routerLink="./invoice" routerLinkActive="active" skipLocationChange="true">Invoice</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" (click)="Logout()" routerLinkActive="active" skipLocationChange="true">Logout</a>

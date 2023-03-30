@@ -5,15 +5,12 @@ import { BlogRoutingModule } from './blog-routing.module';
 import { ToastrModule } from 'ngx-toastr';
 import { PipePipe } from '../pipe.pipe';
 import { TrosterService } from 'src/app/service/troster.service';
-
-
 @NgModule({
   declarations: [PipePipe ],
   imports: [
     CommonModule,
     BlogRoutingModule, 
-   ToastrModule.forRoot(),
-
+   ToastrModule.forRoot()
   ],
   providers: [TrosterService ]
 })

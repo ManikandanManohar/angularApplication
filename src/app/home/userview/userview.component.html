@@ -1,26 +1,16 @@
-<div *ngIf="jobsArr.length==0 then content; else nocontent "></div>
-<ng-template #content> 
-  <div class="container"> 
-    <div class="text-start">
-  <button type="button" class="btn  btn-primary px-4 py-2"  routerLink='/home/userdetails'>
-    Add User 
-  </button> </div>
-  <p class="nodata">No records found.</p>
-</div>
-</ng-template>
-<ng-template #nocontent> 
-<div class="">
-  <div class="add">
-    <h2 class="head text-center py-4">Job Listing</h2>
-  </div>
   <div class="container-fluid">
+    
     <button type="button" class="btn btn-sm btn-primary my-1" routerLink='/home/userdetails'>
       Add User : <b class="text-white">{{jobsArr.length}}</b>
     </button>
-    <div class="table-responsive">
-      <table class="table table-bordered  table-hover text-center">
+    
+     <div  class="table-responsive">
+      <div class="id" >
+
+      <table datatable class="table table-bordered  table-hover text-center">
         <thead class="thead-dark">
           <tr>
+            <th>Id</th>
             <th>User</th>
             <th>FatherName</th>
             <th>Email</th>
@@ -32,7 +22,8 @@
           </tr>   
         </thead>
         <tbody class="body">
-          <tr *ngFor="let Arr of jobsArr">
+          <tr *ngFor="let Arr of jobsArr| slice: (page-1) * pageSize : page * pageSize;let i = index">
+            <td>{{i+1}}</td>
             <td>{{Arr.user}}</td>
             <td>{{Arr.fathername}}</td>
             <td>{{Arr.email}}</td>
@@ -46,14 +37,35 @@
               <p>Age:{{employ.age}} </p>   
                    </li>
               </ul>
-            </td>
-            <div class="d-flex"></div>
-            <i class="fa fa-edit text-success p-2" (click)="onedit(Arr.id)"></i>
-            <i class="fa fa-close text-danger p-2" (click)="ondelete(Arr.id)"></i>
+            </td><div class="d-flex">
+              <i  class="fa fa-eye text-primary p-2"  (click)="open(content ,Arr)"></i>
+              <i class="fa fa-edit text-success p-2" (click)="onedit(Arr.id)"></i>
+             <i class="fa fa-close text-danger p-2" (click)="ondelete(Arr.id)"></i>
+            </div>
+          
           </tr>
         </tbody>
       </table>
-    </div>
+    </div>  
   </div>
+  </div>
+<div class="pagination">
+<ngb-pagination class="d-flex justify-content-center" [pageSize]="pageSize" [collectionSize]="jobsArr.length" [(page)]="page"></ngb-pagination>
 </div>
-  </ng-template>
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title"></h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">	
+    <div id="demo">
+     <app-userdetails  [fetchData]="fetchData"></app-userdetails>
+    </div>
+	</div>
+	<div class="modal-footer justify-content-center">
+  <button  
+  class="btn btn-primary print" printSectionId="demo" [useExistingCss]="true" ngxPrint>Print</button>
+  <button type="button" class="btn btn-primary" (click)="modal.dismiss('Save click')">cancel</button>
+</div>
+</ng-template>
+

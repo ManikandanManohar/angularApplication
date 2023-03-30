@@ -1,0 +1,161 @@
+<div class="card">
+  <div class="card-body mt-5">
+    <div class="container mt-2 py-3">
+      <div class="table-responsive">
+        <div class="row">
+          <div class="col-sm-6 agent">
+            <ul class="list-unstyled">
+              <li class="text-dark">AS AGENT</li>
+              <li class="text-dark"><b>{{agent.agentName}}</b></li>
+              <li class="text-dark">{{agent.address}}</li>
+              <li class="text-dark">{{agent.phone}}</li>
+              <li class="text-dark">{{agent.email}}</li>
+            </ul>
+          </div>
+          <div class="col-sm-6">
+            <img class="hastinlogo mt-4 mr-2 float-right" src="{{cus.logoUrl}}" alt="Hastinlogo">
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <h4 class="text-center"><b>EXPORT INVOICE</b></h4>
+          <div class="col-sm-6">
+            <h4><b>CUSTOMER</b></h4>
+            <ul class="list-unstyled">
+              <li class="text-dark">{{cus.custName}}</li>
+              <li class="text-dark cusadd">{{cus.custAddr}}</li>
+              <li class="text-dark">{{cus.email}}</li>
+              <li class="text-dark">{{cus.phone}}</li>
+            </ul>
+          </div>
+          <div class="col-sm-3 text-end">
+            <ul class="list-unstyled">
+              <li class="text-dark"><b>INVOICE NO :</b></li>
+              <li class="text-dark"><b>INVOICE DATE :</b></li>
+              <li class="text-dark"><b>DUE DATE :</b></li>
+            </ul>
+          </div>
+          <div class="col-sm-2">
+            <ul class="list-unstyled">
+              <li class="text-dark">{{cus.invNo}}</li>
+              <li class="text-dark">{{cus.invDate}}</li>
+              <li class="text-dark">{{cus.dueDate}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <ul class="list-unstyled">
+              <li class="text-dark"><b>BILL OF LADING NO :</b></li>
+              <li class="text-dark"><b>ICONTAINERS :</b></li>
+              <li class="text-dark"><b>ETD :</b></li>
+              <li class="text-dark"><b>ETA :</b></li>
+              <li class="text-dark"><b>GST NO :</b></li>
+              <li class="text-dark"><b>EC NO :</b></li>
+            </ul>
+          </div>
+          <div class="col-3">
+            <ul class="list-unstyled">
+              <li>{{cus.blNo}}</li>
+              <li>{{cus.volume}}</li>
+              <li>{{cus.departureDate}}</li>
+              <li>{{cus.arrivalDate}}</li>
+              <li>{{cus.taxRegNo}}</li>
+              <li>{{cus.iecCode}}</li>
+            </ul>
+          </div>
+          <div class="col-sm-3 text-end">
+            <ul class="list-unstyled">
+              <li><b>ESSEL / VOYAGE :</b> </li>
+              <li><b> POL :</b> </li>
+              <li><b>POD :</b> </li>
+              <li><b>FINAL DEST :</b> </li>
+              <li><b>REFERENCE # :</b> </li>
+            </ul>
+          </div>
+          <div class="col-sm-3">
+            <ul class="list-unstyled">
+              <li>{{cus.vslVoy}}</li>
+              <li>{{cus.poa}}</li>
+              <li>{{cus.pod}}</li>
+              <li>{{cus.fd}}</li>
+              <li>{{cus.reference}}</li>
+            </ul>
+          </div>
+        </div>
+        <table class="table">
+          <thead class="border text-center">
+            <tr>
+              <th>S.No</th>
+              <th>DESCRIPTION</th>
+              <th>QTy</th>
+              <th>AMT</th>
+              <th>SUB TOTAL</th>
+              <th>TAX%</th>
+              <th>TAX </th>
+              <th>TOTAL</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr *ngFor="let Arr of tableList;let i =index" >
+              <td>{{i+1}}</td>
+              <td>{{Arr.charge}} </td>
+              <td>{{Arr.unit}} </td>
+              <td>{{Arr.amount}} {{Arr.currency}}</td>
+              <td> {{Arr.rate}} {{Arr.currency}}</td>
+              <td>{{Arr.taxAmount}} </td>
+              <td> {{Arr.taxPer}} {{Arr.currency}}</td>
+              <td>{{Arr.amount| number: '1.2-2'}} {{Arr.currency}}</td>
+            </tr>
+            <tr>
+              <td colspan="7"></td>
+              <td><b>{{tableTotal.actualToal| number: '1.2-2'}} {{tableTotal.actualCurrency}}</b></td>
+            </tr>
+            <tr>
+              <td colspan="6"></td>
+              <td><b>SUB TOTAL</b></td>
+              <td><b>{{cus.currency}} {{tableTotal.total| number: '1.2-2'}}</b></td>
+            </tr>
+            <tr>
+              <td colspan="8">
+                <hr style="border: 2px solid black;">
+              </td>
+            </tr>
+            <tr *ngFor="let Arr of tableBodyList ;let i =index">
+              <td>{{i+1}}</td>
+              <td>{{Arr.charge}} </td>
+              <td>{{Arr.unit}} </td>
+              <td>{{Arr.amount}} {{Arr.currency}}</td>
+              <td> {{Arr.rate }} {{Arr.currency}} </td>
+              <td>{{Arr.taxAmount}} </td>
+              <td> {{Arr.taxPer}} {{Arr.currency}}</td>
+              <td>{{Arr.totalAmount | number}} {{Arr.currency}}</td>
+            </tr>
+            <tr>
+              <td colspan="7"></td>
+              <td><b>{{tableBodyTotal.actualToal| number: '1.2-2'}} {{tableBodyTotal.actualCurrency}}</b></td>
+            </tr>
+            <tr>
+              <td colspan="6"></td>
+              <td><b>SUB TOTAL</b></td>
+              <td><b>{{tableBodyTotal.actualCurrency}} {{tableBodyTotal.total| number: '1.2-2'}}</b></td>
+            </tr>
+            <tr>
+              <td colspan="8">
+                <hr>
+              </td>
+            </tr>
+            <tr>             
+              <td colspan="6"></td>
+              <td><b>GRAND TOTAL</b></td>
+              <td><b>{{cus.currency}} {{cus.totalAmt| number: '1.2-2'}}</b></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="text-center">| 68 CIRCULAR ROAD, #02-01, 049422, SINGAPORE (EST. 2021)<br>
+          UEN NO 202103036E | (65) 3138 1864 | SUPPORT@HASTIN-CONTAINER.COM | WWW.HASTIN-CONTAINER.COM</p>
+      </div>
+      <button class="btn btn-sm float-right">Print</button>
+    </div>
+  </div>
+</div>
